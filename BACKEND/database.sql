@@ -1,0 +1,29 @@
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL, 
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE vehicles (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    plate VARCHAR(20) UNIQUE NOT NULL,
+    status VARCHAR(50) DEFAULT 'ativo' NOT NULL, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = NOW();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_vehicles_updated_at
+BEFORE UPDATE ON vehicles
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at_column();

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   html, body {
@@ -6,20 +6,20 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     overflow: hidden; 
     height: 100%;
-    width: 100%; 
-    font-family: Arial, sans-serif; 
-    box-sizing: border-box; 
+    width: 100%;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    background-color: #f0f2f5;
   }
 
   *, *::before, *::after {
-    box-sizing: inherit; 
+    box-sizing: inherit;
   }
 
   #root {
-    height: 100%; 
-    display: flex; 
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
   }
 `;
 

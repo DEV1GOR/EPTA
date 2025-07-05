@@ -1,10 +1,11 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 10%;
   min-height: 100vh;
   background-color: #ffffff;
 `;
@@ -75,7 +76,7 @@ export const Input = styled.input`
   border: 1px solid #ddd;
   border-radius: 30px;
   font-size: 16px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 `;
 
 export const Button = styled.button`
@@ -103,7 +104,7 @@ export const RegisterText = styled.p`
   margin-right: auto;
 `;
 
-export const RegisterLink = styled(Link)` 
+export const RegisterLink = styled(Link)`
   color: #007bff;
   text-decoration: none;
   font-weight: bold;

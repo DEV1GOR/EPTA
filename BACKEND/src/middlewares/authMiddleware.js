@@ -1,3 +1,5 @@
+// Esta é a primeira vez que tive contato e implementei JWT
+// assisti muita video aula e li bastante documentação, mas ainda sim foi dificil entender tudo.
 const { verifyToken } = require("../utils/authUtils");
 
 const authMiddleware = (req, res, next) => {

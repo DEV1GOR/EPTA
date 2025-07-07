@@ -5,9 +5,10 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10%;
   min-height: 100vh;
-  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  background-color: #f0f2f5;
 `;
 
 export const LoginBox = styled.div`
@@ -18,6 +19,26 @@ export const LoginBox = styled.div`
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   background-color: #ffffff;
+
+  @media (max-width: 1200px) {
+    width: 90%;
+    height: auto;
+    min-height: 500px;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 95%;
+    height: auto;
+    min-height: 600px;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+  }
 `;
 
 export const LeftPanel = styled.div`
@@ -29,6 +50,17 @@ export const LeftPanel = styled.div`
   justify-content: center;
   align-items: flex-start;
   height: 100%;
+
+  @media (max-width: 768px) {
+    height: auto;
+    padding: 30px;
+    align-items: center;
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px;
+  }
 `;
 
 export const RightPanel = styled.div`
@@ -38,6 +70,15 @@ export const RightPanel = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+
+  @media (max-width: 768px) {
+    height: 200px;
+    order: -1;
+  }
+
+  @media (max-width: 480px) {
+    height: 150px;
+  }
 `;
 
 export const Logo = styled.img`
@@ -46,6 +87,11 @@ export const Logo = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
+
+  @media (max-width: 768px) {
+    width: 120px;
+    margin-bottom: 15px;
+  }
 `;
 
 export const WelcomeText = styled.p`
@@ -54,12 +100,18 @@ export const WelcomeText = styled.p`
   margin-bottom: 50px;
   margin-left: auto;
   margin-right: auto;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
 `;
 
 export const Form = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const Label = styled.label`
@@ -67,6 +119,8 @@ export const Label = styled.label`
   color: #333;
   margin-bottom: 8px;
   font-weight: bold;
+  width: 100%;
+  text-align: left;
 `;
 
 export const Input = styled.input`
@@ -77,6 +131,11 @@ export const Input = styled.input`
   border-radius: 30px;
   font-size: 16px;
   box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    font-size: 14px;
+  }
 `;
 
 export const Button = styled.button`
@@ -89,6 +148,7 @@ export const Button = styled.button`
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s ease;
+  width: 100%;
 
   &:hover {
     background-color: #0056b3;

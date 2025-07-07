@@ -24,6 +24,12 @@ export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 576px) {
+    padding: 25px;
+    width: 95%;
+    border-radius: 8px;
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -38,6 +44,12 @@ export const CloseButton = styled.button`
   &:hover {
     color: #333;
   }
+
+  @media (max-width: 576px) {
+    font-size: 24px;
+    top: 15px;
+    right: 15px;
+  }
 `;
 
 export const ModalMainTitle = styled.h2`
@@ -46,6 +58,10 @@ export const ModalMainTitle = styled.h2`
   margin-top: 0;
   margin-bottom: 5px;
   text-align: center;
+
+  @media (max-width: 576px) {
+    font-size: 24px;
+  }
 `;
 
 export const ModalSubtitle = styled.p`
@@ -53,12 +69,22 @@ export const ModalSubtitle = styled.p`
   color: #666;
   margin-bottom: 30px;
   text-align: center;
+
+  @media (max-width: 576px) {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const CarIcon = styled.div`
   font-size: 60px;
   color: #333;
   margin-bottom: 30px;
+
+  @media (max-width: 576px) {
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const Form = styled.form`
@@ -72,6 +98,10 @@ export const Label = styled.label`
   font-size: 16px;
   color: #555;
   font-weight: bold;
+
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
 `;
 
 export const Input = styled.input`
@@ -81,6 +111,11 @@ export const Input = styled.input`
   font-size: 16px;
   width: 100%;
   box-sizing: border-box;
+
+  @media (max-width: 576px) {
+    padding: 12px;
+    font-size: 14px;
+  }
 `;
 
 export const SubmitButton = styled.button`
@@ -101,6 +136,12 @@ export const SubmitButton = styled.button`
   }
   &:active {
     transform: translateY(0);
+  }
+
+  @media (max-width: 576px) {
+    padding: 12px 15px;
+    font-size: 16px;
+    margin-top: 20px;
   }
 `;
 

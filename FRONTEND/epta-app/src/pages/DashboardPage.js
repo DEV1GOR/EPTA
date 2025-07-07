@@ -1,4 +1,3 @@
-// frontend/epta-app/src/pages/DashboardPage.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
@@ -7,6 +6,7 @@ import eptaLogoSrc from "../img/eptaLogo.png";
 
 import VehicleFormModal from "../components/VehicleFormModal";
 
+// importando estilos do DashboardPage ficou muito grande, então criei um arquivo separado
 import {
   LayoutContainer,
   Sidebar,
@@ -54,6 +54,7 @@ function DashboardPage() {
   });
   const [vehicles, setVehicles] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingVehicle, setEditingVehicle] = useState(null);
 
   const fetchData = async () => {
     try {
@@ -71,18 +72,22 @@ function DashboardPage() {
     fetchData();
   }, []);
 
+  // Função para desconectar o usuário
   const handleLogout = () => {
     localStorage.removeItem("jwt_token");
     navigate("/login");
   };
 
+  // Função para abrir o modal de cadastro de novo veículo
   const handleRegisterVehicle = () => {
+    setEditingVehicle(null);
     setIsModalOpen(true);
     console.log("Botão Cadastrar Veículo clicado!");
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setEditingVehicle(null);
     fetchData();
   };
 
@@ -90,16 +95,45 @@ function DashboardPage() {
     fetchData();
   };
 
-  const handleEdit = (vehicleId) => {
-    console.log("Editar veículo:", vehicleId);
-  };
-  const handleArchiveUnarchive = (vehicleId, currentStatus) => {
-    console.log("Arquivar/Desarquivar veículo:", vehicleId, currentStatus);
-  };
-  const handleDelete = (vehicleId) => {
-    console.log("Excluir veículo:", vehicleId);
+  const handleEdit = (vehicle) => {
+    setEditingVehicle(vehicle);
+    setIsModalOpen(true);
+    console.log("Editar veículo:", vehicle.id);
   };
 
+  const handleArchiveUnarchive = async (vehicleId, currentStatus) => {
+    try {
+      const newStatus = currentStatus === "ativo" ? "inativo" : "ativo";
+      await api.put(
+        `/vehicles/${vehicleId}/${
+          newStatus === "ativo" ? "unarchive" : "archive"
+        }`
+      );
+      fetchData();
+      console.log(`Veículo ${vehicleId} ${newStatus}do com sucesso!`);
+    } catch (error) {
+      console.error(
+        `Erro ao ${
+          currentStatus === "ativo" ? "arquivar" : "desarquivar"
+        } veículo:`,
+        error
+      );
+    }
+  };
+
+  const handleDelete = async (vehicleId) => {
+    if (window.confirm("Tem certeza que deseja excluir este veículo?")) {
+      try {
+        await api.delete(`/vehicles/${vehicleId}`);
+        fetchData();
+        console.log(`Veículo ${vehicleId} excluído com sucesso!`);
+      } catch (error) {
+        console.error("Erro ao excluir veículo:", error);
+      }
+    }
+  };
+
+  // Conteúdo do Dashboard
   const DashboardContent = (
     <>
       <DashboardHeader>
@@ -152,7 +186,7 @@ function DashboardPage() {
                   </td>
                   <td>
                     <ActionButtonsContainer>
-                      <ActionButtonIcon onClick={() => handleEdit(vehicle.id)}>
+                      <ActionButtonIcon onClick={() => handleEdit(vehicle)}>
                         ✏️
                       </ActionButtonIcon>{" "}
                       <ActionButtonIcon
@@ -237,6 +271,7 @@ function DashboardPage() {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onSave={handleVehicleSaved}
+        vehicleData={editingVehicle}
       />
     </LayoutContainer>
   );

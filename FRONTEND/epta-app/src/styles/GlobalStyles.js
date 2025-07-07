@@ -4,12 +4,11 @@ const GlobalStyles = createGlobalStyle`
   html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden; 
     height: 100%;
     width: 100%;
     font-family: Arial, sans-serif;
     box-sizing: border-box;
-    background-color: #f0f2f5;
+    background-color: #ffffff;
   }
 
   *, *::before, *::after {
